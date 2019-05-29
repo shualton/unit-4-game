@@ -50,7 +50,6 @@ $(document).ready(function() {
 		pokemonValues(pokemonNumbers);
 		totalScore = 0;
 		$("#totalNumber").html(totalScore);
-		alert(x);
 	} 
 	pickRandomNumber(rand);
 	pickRandomPokemon(pokemon); 
@@ -81,13 +80,13 @@ $(document).ready(function() {
 			$("#totalNumber").html(totalScore);
 			$("#wins").html("Wins: " + wins);
 
-			setTimeout(function() {gameReset("Winner")}, 200);
+			gameReset();
 		}
 		else if (totalScore > randNumber){
 			losses++;
 			$("#totalNumber").html(totalScore);
 			$("#losses").html("Losses: " + losses);
-			setTimeout(function() {gameReset("Loser")}, 200);
+			gameReset();
 		}
 	});
 
