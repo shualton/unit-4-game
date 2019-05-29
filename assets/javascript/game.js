@@ -1,151 +1,94 @@
 $(document).ready(function() {
-
-	// ******* NUMBER ARRAYS *******
-
-	// random computer variable array
 	var rand = [];
-
 	for (var r = 19; r < 121; r++) {
 		rand.push(r);
 	}
-
-	// crystal numbers array
-	var crystals = [];
-
-	for (var c = 1; c < 13; c++) {
-
-		crystals.push(c);
+	var pokemon = [];
+	for (var p = 1; p < 13; p++) {
+		pokemon.push(p);
 	}
-
-	// console.log(crystals);
-
-	// ******* GLOBAL VARIABLES *******
-
-	// random variables selected by computer
-	var randNumber; // number to match
-	var crystalNumbers = []; // for array of random crystal values
-
-	var c1;
-	var c2;
-	var c3;
-	var c4;
-
-  var totalScore = 0; // user's score
-
+	var randNumber; 
+	var pokemonNumbers = []; 
+	var p1;
+	var p2;
+	var p3;
+	var p4;
+  var totalScore = 0; 
 	var wins = 0;
 	var losses = 0;
-
-	// ******* FUNCTIONS *******
-
-	// pick a random number
 	function pickRandomNumber(arr) {
-
 		var x = arr[Math.floor(Math.random() * arr.length)];
 		randNumber = x;
 		$("#randomNumber").html(randNumber);
-
 		console.log("random number: " + randNumber);
-
-	} // END of pickRandomNumber function
-
-	// pick random numbers for crystals
-
-	function pickRandomCrystals(arr) {
+	}
+	function pickRandomPokemon(arr) {
 
 		for (var y = 0; y < 4; y++){
 
 			var a = arr[Math.floor(Math.random() * arr.length)];
 
-			crystalNumbers.push(a);
+			pokemonNumbers.push(a);
 		}
-    // check which numbers have been picked
-		console.log("crystal numbers: " + crystalNumbers);
+		console.log("pokemon numbers: " + pokemonNumbers);
 
-	} // END of pickRandomCrystals function
-
-	function crystalValues(arr) {
-
-		// change value of each crystal button according to array
+	} 
+	function pokemonValues(arr) {
 		for (i = 0; i < arr.length; i++) {
-
 		$("#button-" + (i+1)).attr("value", arr[i]);
 		console.log(this);
 		}
-		c1 = arr[0];
-		c2 = arr[1];
-		c3 = arr[2];
-		c4 = arr[3];
-	} // END of crystalValues function
-
+		p1 = arr[0];
+		p2 = arr[1];
+		p3 = arr[2];
+		p4 = arr[3];
+	} 
 	function gameReset(x) {
-
-		crystalNumbers = []; // clears crystal number values
-
+		pokemonNumbers = []; 
 		pickRandomNumber(rand);
-
-		pickRandomCrystals(crystals);
-
-		crystalValues(crystalNumbers);
-
+		pickRandomPokemon(pokemon);
+		pokemonValues(pokemonNumbers);
 		totalScore = 0;
 		$("#totalNumber").html(totalScore);
-
 		alert(x);
-	} // END of gameReset function
-
-	// *** GAME SETTINGS AT START ***
-
-	pickRandomNumber(rand); // random number to match
-	pickRandomCrystals(crystals); // array of random crystal values
-	crystalValues(crystalNumbers);
-
-		// crystal button functions
+	} 
+	pickRandomNumber(rand);
+	pickRandomPokemon(pokemon); 
+	pokemonValues(pokemonNumbers);
 
 		$("#button-1").on("click", function() {
-
-			totalScore += c1;
+			totalScore += p1;
 			$("#totalNumber").html(totalScore);
 		});
-
 		$("#button-2").on("click", function() {
-
-			totalScore += c2;
+			totalScore += p2;
 			$("#totalNumber").html(totalScore);
 		});
-
 		$("#button-3").on("click", function() {
-
-			totalScore += c3;
+			totalScore += p3;
 			$("#totalNumber").html(totalScore);
 		});
-
 		$("#button-4").on("click", function() {
 
-			totalScore += c4;
+			totalScore += p4;
 			$("#totalNumber").html(totalScore);
 		});
 
 	$("button").on("click", function() {
-		// this is what happens if the user wins
 		if (totalScore == randNumber) {
-
 			wins++;
 			console.log(totalScore);
 			$("#totalNumber").html(totalScore);
 			$("#wins").html("Wins: " + wins);
 
-
 			setTimeout(function() {gameReset("Winner")}, 200);
 		}
-
 		else if (totalScore > randNumber){
-
 			losses++;
 			$("#totalNumber").html(totalScore);
 			$("#losses").html("Losses: " + losses);
-
 			setTimeout(function() {gameReset("Loser")}, 200);
 		}
 	});
 
-}); // end of script
+});
